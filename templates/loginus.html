@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block loginblock %}
+
+<main class="px-3">
+    <h1 class="text-center">Login to GymGuru</h1>
+    <div class="col-md-4 p-lg-5 m-auto border border-white p-2 rounded-2 ">
+    
+        <form action="/loginus/" method="post">
+          {% csrf_token %}
+            <label for="floatingInput" class="form-label text-left">Username</label>
+            <input type="username" name="username" id="username"  class="form-control" placeholder="Enter your username" >
+          <br>
+            <label for="floatingPassword">Password</label>
+            <input type="password" name="pass1" id="pass1" class="form-control" placeholder="Enter your password" >
+          <br>
+
+          <button class="btn btn-lg btn-secondary fw-bold border-white bg-white w-100 " type="submit">Login</button>
+          <a href="{% url 'register' %}" class=" me-auto text-white p-2">Register here!!</a>
+            
+        </form>
+ 
+
+    </div> 
+</main>
+
+
+{% endblock loginblock %}

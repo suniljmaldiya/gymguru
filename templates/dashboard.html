@@ -1,0 +1,971 @@
+
+{% block dashboardblock %}
+
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>GymGuru</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href=" {% static 'css/dashboard.css' %} " rel="stylesheet">
+<script src=" {% static 'js/dashboard.js' %} "></script>
+
+  </head>
+<body style="background-color:#53625b9c;">
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">GymGuru</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  {% comment %} <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href=" {% url 'logoutus' %} ">Sign out</a>
+    </div> {% endcomment %}
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse bg-image-sidebardashboard">
+      <div class="position-sticky pt-3 sidebar-sticky">
+        <ul class="nav flex-column text-white">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home" class="align-text-bottom"></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=" {% url 'logoutus' %} ">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Logout
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=" {% url 'faq' %} ">
+              <span data-feather="shopping-cart" class="align-text-bottom"></span>
+              How its work
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=" {% url 'contact' %} ">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Contact us
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+          <span>Reports</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle" class="align-text-bottom"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="" class="updatestraingth">
+              <span data-feather="file-text" class="align-text-bottom"></span>
+              Update your waight
+                <input type="number" name="waight" placeholder="kg" id="updatewaight">
+                <button type="button" onclick="updatestraingthFun()" >Update</button>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text" class="align-text-bottom"></span>
+              Update your height
+              <input type="number" class="form-control" name="height" id="updateheight" placeholder="cm">
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text" class="align-text-bottom"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text" class="align-text-bottom"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+          </button>
+        </div>
+      </div>
+      <div class="container text-center m-auto p-5 clearfix bg-image-dashboard" width="900" height="480">
+        <div class="row">
+          <div class="col order-last">
+          <div class="col-md-3  dashboardcircle " >H1</div>
+            
+          </div>
+          <div class="col">
+          <div class="col-md-3  dashboardcircle ">H1</div>
+            
+          </div>
+          <div class="col order-first">
+          <div class="col-md-3  dashboardcircle " id="waightdisplayid"></div>
+            
+          </div>
+        </div>
+      </div>
+
+      {% comment %} <div class="my-4 row text-center w-100 bg-success" id="myChart1" width="900" height="480">
+        
+        
+        <h6>Hello GymGuru</h6>
+         
+          <div class="col-md-3 border border-5 mx-1  rounded-circle" style="height:13rem;width:16rem;">H1</div>
+          <div class="col-md-3 border border-5 mx-1 rounded-circle" style="height:13rem;width:16rem;">h2</div>
+          <div class="col-md-3 border border-5 mx-1 rounded-circle" style="height:13rem;width:16rem;">h3</div>
+          <div class="col-md-3 border border-5 mx-1 rounded-circle" style="height:13rem;width:16rem;">h3</div>
+  
+      
+      </div> {% endcomment %}
+      
+      <div class="mt-4 mb-5 text-center">
+        <h2>Start workout </h2>
+        <div class="col-md-4 m-auto">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Choose your level</option>
+          <option value="1">Beginner (Level 1)</option>
+          <option value="1">Beginner (Level 2)</option>
+          <option value="1">Beginner (Level 3)</option>
+          <option value="1">Beginner (Level 4)</option>
+          <option value="1">Beginner (Level 5)</option>
+          <option value="2">Intermediate (Level 1)</option>
+          <option value="2">Intermediate (Level 2)</option>
+          <option value="2">Intermediate (Level 3)</option>
+          <option value="2">Intermediate (Level 4)</option>
+          <option value="2">Intermediate (Level 5)</option>
+          <option value="3">Advanced (Level 1)</option>
+          <option value="3">Advanced (Level 2)</option>
+          <option value="3">Advanced (Level 3)</option>
+          <option value="3">Advanced (Level 4)</option>
+          <option value="3">Advanced (Level 5)</option>
+        </select>
+      </div>
+      </div>
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingzero">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsezero" aria-expanded="true" aria-controls="panelsStayOpen-collapsezero">
+              Beginner (Level 1)
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapsezero" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingzero">
+            <div class="accordion-body row m-auto center">
+
+          <section>
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Day 1
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                    Day 2
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingTwo">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+                    Day 3
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingThree">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+                    Day 4
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingFour">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
+                    Day 5
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingFive">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="true" aria-controls="panelsStayOpen-collapseSix">
+                    Day 6
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingSeven">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="true" aria-controls="panelsStayOpen-collapseSeven">
+                    Day 7
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSeven">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        </div>
+        </div>
+      </div>
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingeight">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseeight" aria-expanded="true" aria-controls="panelsStayOpen-collapseeight">
+              Beginner (Level 2)
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseeight" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body row m-auto center">
+
+          <section>
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingnine">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsenine" aria-expanded="true" aria-controls="panelsStayOpen-collapsenine">
+                    Day 1
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapsenine" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Complete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingten">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseten" aria-expanded="true" aria-controls="panelsStayOpen-collapseten">
+                    Day 2
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseten" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingTwo">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Completed</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingeleven">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseeleven" aria-expanded="true" aria-controls="panelsStayOpen-collapseeleven">
+                    Day 3
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseeleven" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingeleven">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Completed</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingtwthirteen">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsetwthirteen" aria-expanded="true" aria-controls="panelsStayOpen-collapsetwthirteen">
+                    Day 4
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapsetwthirteen" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingtwthirteen">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Completed</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingthirteen">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsethirteen" aria-expanded="true" aria-controls="panelsStayOpen-collapsethirteen">
+                    Day 5
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapsethirteen" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingthirteen">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Completed</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingfourteen">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsefourteen" aria-expanded="true" aria-controls="panelsStayOpen-collapsefourteen">
+                    Day 6
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapsefourteen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingfourteen">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Completed</button>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingfifteen">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsefifteen" aria-expanded="true" aria-controls="panelsStayOpen-collapsefifteen">
+                    Day 7
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapsefifteen" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingfifteen">
+                  <div class="accordion-body row m-auto center">
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 ">
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div> 
+                    <div class="card col-md-3 " >
+                      <img src=" {% static 'media/gm4.jpg' %} " class="card-img-top" alt="...">
+                      <div class="">
+                        <strong>Exercise 1:</strong><h5>Wormup</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>  
+                    
+                  </div>
+                  <div class="d-grid gap-2 m-3 col-6 mx-auto">
+                    <button class="btn " style="background-color:black;color:white;" type="button">Completed</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        </div>
+        </div>
+      </div>
+     
+      <div class="mt-5 mb-1 text-center">
+        <h2>Follow diet </h2>
+      </div>
+  <div class="album py-5 text-dark">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card text-bg-dark ">
+                <img src=" {% static 'media/egg.jpg' %} " class="card-img responsive-img" width="100%" height="225"  alt="...">
+                <div class="card-body">
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm right btn-outline-secondary">Complete</button>
+                      </div>
+                   
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card text-bg-dark ">
+                  <img src=" {% static 'media/paneer.jpg' %} "class="card-img responsive-img" width="100%" height="225"  alt="...">
+                  
+                  <div class="card-body">
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Complete</button>
+                        </div>
+                     
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+       
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card text-bg-dark ">
+                <img src=" {% static 'media/gm1.jpg' %} " class="card-img responsive-img" width="100%" height="225"  alt="...">
+                
+                <div class="card-body">
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Complete</button>
+                      </div>
+                   
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        
+    </div>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+
+<script>
+
+function updatestraingthFun(){
+  alert("He")
+  var stpone = document.getElementById("updatewaight").value;
+  var stptwo = document.getElementById("waightdisplayid").innerHTML;
+  if stptwo ==" " {
+  var stptwo = document.getElementById("waightdisplayid").innerHTML = stpone;
+
+  }else{
+  var stptwo = document.getElementById("waightdisplayid").innerHTML = "Update waight";
+
+  }
+
+
+}
+
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      
+    </body>
+</html>
+
+{% endblock dashboardblock %}

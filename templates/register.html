@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block registerblock %}
+
+<main class="px-3">
+    <h1 class="text-center">Start your training</h1>
+    <div class="col-md-4 p-lg-5 m-auto border border-white p-2 rounded-2 ">
+    
+        <form action="/register/" method="post">
+            {% csrf_token %}
+            <label for="floatingInput" class="form-label text-left">Username</label>
+            <input type="text" name="username" class="form-control" id="username" >
+          <br>
+            <label for="floatingInput" class="form-label">Full name</label>
+            <input type="name" name="full_name" id="full_name" class="form-control" id="floatingInput" >
+          <br>
+            <label for="floatingPassword">Email</label>
+            <input type="Email" name="email" id="email" class="form-control" id="floatingPassword" >
+            <br>
+            <label for="floatingPassword">Password</label>
+            <input type="password" name="pass1" id="pass1" class="form-control" id="floatingPassword" >
+            <br>
+            <label for="floatingPassword">Confirm password</label>
+            <input type="password" name="pass2" id="pass2" class="form-control" id="floatingPassword" >
+            <br>
+
+          <button class="btn btn-lg btn-secondary fw-bold border-white bg-white w-100 " type="submit">Register</button>
+          <a href="{% url 'loginus' %}" class=" m-auto text-white p-2">Login</a>
+        </form>
+ 
+
+    </div> 
+</main>
+
+
+
+
+
+{% endblock registerblock %}

@@ -1,0 +1,4 @@
+For creating django project through powershell
+python -m django  startproject gymguru
+or 
+django-admin startproject gymguru

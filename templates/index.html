@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+    
+{% block content %}
+
+  <main class="px-3 text-center">
+    <h1>Workout is my passion</h1>
+    <p class="lead">Bodybuilding is much like any other sport. To be successful, you must dedicate yourself 100% to your training, diet and mental approach.¨ - Arnold Schwarzenegger</p>
+    <p class="lead">
+      {% if user.is_authenticated %}
+      <a href=" {% url 'dashboard' %} " class="btn btn-lg btn-secondary fw-bold border-white bg-white"> Welcome {{full_name}}</a>
+      {% else %}
+      <a href=" {% url 'loginus' %} " class="btn btn-lg btn-secondary fw-bold border-white bg-white">Login</a>
+      <a href=" {% url 'register' %} " class="btn btn-lg btn-secondary fw-bold border-white bg-white">Register</a>
+      {% endif %}
+    </p>
+  </main>
+
+
+    
+</body>
+</html>
+{% endblock content %}   
