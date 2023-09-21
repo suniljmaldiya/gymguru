@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8
+FROM python:3.9
 
 # Set environment variables
 # ENV PYTHONDONTWRITEBYTECODE 1
@@ -19,5 +19,6 @@ COPY . /app/
 EXPOSE 8000
 
 # Start the application
-CMD ["python", "/app/manage.py", "runserver", "0.0.0.0:8000"]
+CMD python /app/manage.py runserver 0.0.0.0:8000
+# CMD ["python", "/app/manage.py", "runserver", "0.0.0.0:8000"]
 
